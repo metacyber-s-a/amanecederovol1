@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMANECEDERO VOL.1</title>
+    <link rel="shortcut icon" href="cd4.png"> 
+
+
+</head>
+
+<body>
+
+
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
+    <script
+        src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
+    <a-scene>
+
+        <a-entity id="rig" movement-controls kinematic-body>
+            <a-entity id="camera" camera position="0 2 20" look-controls cursor="rayOrigin: mouse"></a-entity>
+        </a-entity>
+        <a-assets>
+            <audio id="river" src="./msn-remix.mp3" preload="auto"></audio>
+
+            <a-asset-item id="tree" src="./sombras.gltf"></a-asset-item>
+            <img id="sky" src="./pink.jpg">
+
+
+        </a-assets>
+        <a-entity sound="src: #river; autoplay: true"></a-entity>
+
+        <a-sky src="#sky" animation="property: rotation; to: 0 360 0; dur: 60000; easing: linear; loop: true"></a-sky>
+        <a-light type="ambient" intensity="0.800" color="#666"></a-light>
+        <a-light type="directional" intensity="0.800" position="2 6.55086 -3.74527" light="intensity: 5.09"></a-light>w
+        <a-entity navigate-on-click="url: https://us02web.zoom.us/j/89883459084?pwd=VUFHNTBLdmNDeHQzdndjZ3ZoWDdkZz09"
+            gltf-model="#tree" position="0 0 0"
+            animation="property: rotation; to: 0 360 0; dur: 1000as; easing: linear; loop: true" a></a-entity>
+
+        <a-plane src="#sky" animation="property: rotation; to: -90 0 270; dur: 100000s; easing: linear; loop: true" height="50" width="50" rotation="-90 0 0" material="shader: flat;  " geometry=""></a-plane>
+    </a-scene>
+    <script>
+        AFRAME.registerComponent('navigate-on-click', {
+            schema: {
+                url: { default: '' }
+            },
+
+            init: function () {
+                var data = this.data;
+                var el = this.el;
+
+                el.addEventListener('click', function () {
+                    window.location.href = data.url;
+                });
+            }
+        });        
+    </script>
+</body>
+
+</html>
